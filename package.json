@@ -1,0 +1,49 @@
+{
+  "name": "koa-radior",
+  "version": "0.0.1",
+  "description": "koa middleware to use radior.",
+  "main": "./server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha  ./test/spec/*",
+    "testone": "mocha ",
+    "testbus": "mocha  ./test/bus",
+    "testlib": "mocha  ./test/lib",
+    "lint": "eslint lib"
+  },
+  "keywords": [
+    "event bus"
+  ],
+  "author": "sskyy",
+  "license": "MIT",
+  "devDependencies": {
+    "file-loader": "~0.8.5",
+    "koa": "~1.1.2",
+    "koa-static": "~1.5.2",
+    "koa-webpack-dev-middleware": "~1.0.1",
+    "less-loader": "~2.2.2",
+    "mocha": "^2.2.5",
+    "url-loader": "~0.5.7",
+    "webpack": "~1.9.10"
+  },
+  "dependencies": {
+    "babel-eslint": "~4.1.5",
+    "co": "~4.5.4",
+    "co-body": "~4.0.0",
+    "eslint": "~1.9.0",
+    "eslint-config-rackt": "1.0.0",
+    "koa-send": "~3.1.0",
+    "lodash": "~3.10.1",
+    "lodash.clonedeep": "~3.0.1",
+    "lodash.merge": "~3.3.1",
+    "lodash.uniq": "~3.2.1",
+    "pre-commit": "~1.1.2",
+    "radior": "~0.1.0",
+    "regenerator": "~0.8.42"
+  },
+  "pre-commit": [
+    "lint"
+  ]
+}

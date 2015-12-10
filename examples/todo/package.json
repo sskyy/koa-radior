@@ -1,0 +1,33 @@
+{
+  "name": "koa-radior-example-todo",
+  "version": "0.0.0",
+  "description": "koa middleware to use radior.",
+  "main": "./index.js",
+  "scripts": {
+    "dev": "node ./server.js"
+  },
+  "keywords": [
+    "event bus"
+  ],
+  "author": "sskyy",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer-loader": "~3.1.0",
+    "babel": "~6.1.18",
+    "babel-core": "~6.2.4",
+    "babel-loader": "~6.2.0",
+    "css-loader": "~0.23.0",
+    "extract-text-webpack-plugin": "~0.9.1",
+    "babel-preset-es2015": "~6.1.18",
+    "koa": "~1.1.2",
+    "koa-webpack-dev-middleware": "~1.0.1",
+    "webpack": "~1.9.10"
+  },
+  "dependencies": {
+    "co": "~4.5.4",
+    "eslint": "~1.9.0",
+    "eslint-config-rackt": "1.0.0",
+    "koa-send": "~3.1.0",
+    "radior": "~0.1.0"
+  }
+}
