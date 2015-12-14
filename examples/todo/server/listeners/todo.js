@@ -1,14 +1,12 @@
+const db = []
+
 module.exports = {
 
-  'Client:todo.create': function (arg) {
-    console.log(this._runtime.getRuntime(this._eventRuntimeKey).data)
-    console.log('server get data', this.get('todo'), arg)
-    this.set('server','no')
-  },
-  'todo.delete': function () {
+  'Client:todo.create': function ( content ) {
+    const todo = {content, id : db.length}
+    db.push(todo)
+    //TODO error 演示
 
-  },
-  'todo.update': function () {
-
+    this.set('todo', todo )
   }
 }

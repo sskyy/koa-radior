@@ -1,8 +1,10 @@
+const util = require('../util')
+
 module.exports = {
   'todo.create': {
     fn: function (content) {
       this.set('todo', { content })
     },
-    first: true
+    last: true
   }
 }

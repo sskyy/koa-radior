@@ -61,7 +61,7 @@ class HttpClientRadior extends Radior {
         console.log( this._runtime, this._eventRuntimeKey, this._runtime.getRuntime(this._eventRuntimeKey) )
         if( err ) return reject(err)
 
-        //TODO 拿到数据后合并 runtime
+        //拿到数据后合并 runtime
         //1. 合并data
         const serverRuntime = res.body.runtime.data
         const runtime = this._runtime.getRuntime(this._eventRuntimeKey)
