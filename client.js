@@ -3,6 +3,19 @@ const Radior = require('radior/dist/generator')
 const assign = require('object-assign')
 require('regenerator/runtime')
 
+function isArray(obj){
+  return Object.prototype.toString.call(obj) === '[object Array]'
+}
+
+function manualMerge(target, source, handler){
+  const result = isArray(target) ? [] : {}
+  for( var i in source){
+    result[i] = handler(target[i], source[i])
+  }
+
+  return result
+}
+
 class HttpClientRadior extends Radior {
   constructor(domain) {
     super()
@@ -46,9 +59,7 @@ class HttpClientRadior extends Radior {
 
   _delegateCall( eventName, listenerName, eventArgs ){
 
-
     //找到当前的 runtime data
-
     return new Promise((resolve,reject)=>{
       request.post('/radior/call')
         .send({
@@ -65,11 +76,26 @@ class HttpClientRadior extends Radior {
         //1. 合并data
         const serverRuntime = res.body.runtime.data
         const runtime = this._runtime.getRuntime(this._eventRuntimeKey)
+        const globalRuntime = this._runtime.getRuntime()
         const serverListenerName = Object.keys(serverRuntime.listeners)[0]
-        runtime.data = serverRuntime.data
+
+        runtime.data.shared = serverRuntime.data.shared
+
+        //注意 global 和 shared 替换方式不一样
+        function manualHandler( globalProp, serverProp){
+          if( typeof serverProp === 'function'){
+            return serverProp(globalProp)
+          }else if(typeof serverProp === 'object' && typeof globalProp === 'object'){
+            return manualMerge( globalProp, serverProp, manualHandler)
+          }else{
+            return serverProp
+          }
+        }
+
+        globalRuntime.data.global = manualMerge( globalRuntime.data.global, serverRuntime.data.global, manualHandler)
+        console.log('merged', globalRuntime.data.global, serverRuntime.data.global)
         //2. 替换服务器端 listener 信息
         runtime.listeners[serverListenerName].childEvents = serverRuntime.listeners[serverListenerName].childEvents
-
           return resolve(res.body)
       })
     })
