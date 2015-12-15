@@ -1,11 +1,11 @@
-/* eslint-disable no-console */
+
 const app = require('koa')()
 
-const RadiorMiddleware = require('../../server.js')
-const radioMiddleware = new RadiorMiddleware
-radioMiddleware.radior.load(require('./server/listeners/todo.js'))
+const Radior = require('../../server.js')
+const radio= new Radior
+radio.load(require('./server/listeners/todo.js'))
 
-app.use( radioMiddleware.middleware() )
+app.use( radio.middleware() )
 
 app.listen(3000)
 console.log('Listening 3000')

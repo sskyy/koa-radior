@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
+
 const app = require('koa')()
 
 const RadiorMiddleware = require('../../server.js')
 const radioMiddleware = new RadiorMiddleware
-radioMiddleware.radior.load(require('./server/listeners/todo.js'))
+radioMiddleware.load(require('./server/listeners/todo.js'))
 
 app.use( radioMiddleware.middleware() )
 

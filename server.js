@@ -1,24 +1,23 @@
 'use strict'
 const _ = require('lodash')
 const RequestRadior = require('./lib/RequestRadior')
-const DomainRadior = require('./lib/DomainRadior')
 const parser = require('co-body')
 
-class RadioMiddleware {
+
+class RadioMiddleware extends RequestRadior {
   constructor( rawOptions ) {
+    super()
     this.options = _.defaults(rawOptions||{},{
       apiPrefix : '/radior'
     })
 
-    this.radior = new RequestRadior
-    this.radior.domain('Server')
+    this.domain('Server')
   }
 
   middleware() {
 
     const options = this.options
-    const radior = this.radior
-    const that = this
+    const radior = this
     return function* (next) {
 
       console.log('request coming', this.request.path)
@@ -44,7 +43,7 @@ class RadioMiddleware {
 
       }else if(this.request.path === `${options.apiPrefix}/monitors`){
 
-        this.body = that.makeDelegateListeners(radior._domainListeners[this.request.query.domain])
+        this.body = radior.makeDelegateListeners(radior._domainListeners[this.request.query.domain])
 
       } else {
         yield next
