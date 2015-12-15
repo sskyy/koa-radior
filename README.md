@@ -6,7 +6,7 @@ Integrate Radior with Koa. Use this middleware to listen to front-end Radior eve
 
 On server:
 
-```
+```javascript
 const app = require('koa')()
 
 const Radior = require('koa-radior')
@@ -24,7 +24,7 @@ app.listen(3000)
 
 on page:
 
-```
+```javascript
 const Radior = require('koa-radior/client.js')
 const radior = new Radior('Client')
 
