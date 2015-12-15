@@ -1,27 +1,20 @@
-# antd-demo
-
-## Environment
-
-```
-node >= 0.12
-```
-
-## Code Style
-
-https://github.com/airbnb/javascript
+# koa-radior with roof 0.5.x
 
 ## Develop
 
+Start static page server:
+
 ```
-npm install -g tnpm --registry=http://registry.npm.alibaba-inc.com
-tnpm install
+npm install
+npm install
 npm run dev
 ```
 
-访问 http://127.0.0.1:8000 
-
-## Build
+Start API server:
 
 ```
-npm run build
+node server.js
 ```
+
+visit [http://localhost:8989](http://localhost:8989)
+
